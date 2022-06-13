@@ -1,3 +1,8 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import org.jetbrains.kotlin.konan.properties.loadProperties
+import java.util.*
+import java.io.*
+
 plugins {
     // kotlin serialization
 //    kotlin(Dependencies.BuildPlugins.jvm) // version "1.6.20" // or kotlin("multiplatform") or any other kotlin plugin
@@ -5,7 +10,7 @@ plugins {
     id(Dependencies.BuildPlugins.library)
     id(Dependencies.BuildPlugins.kotlinAndroid)
     id(Dependencies.BuildPlugins.kapt)
-    //hilt
+    // hilt
     id(Dependencies.BuildPlugins.hilt)
 }
 
@@ -18,6 +23,8 @@ android {
 
         testInstrumentationRunner = Config.Application.testInstrumentationRunner
         consumerProguardFiles("consumer-rules.pro")
+
+        buildConfigField("String", "openWeatherKey", getApiKey("open_weather_key"))
     }
 
     buildTypes {
@@ -70,4 +77,15 @@ dependencies {
     ).forEach {
         androidTestImplementation(it)
     }
+}
+
+kapt {
+    correctErrorTypes = true
+}
+
+fun getApiKey(propertyKey: String): String {
+    val prop = Properties().apply {
+        load(FileInputStream(File("./sign/local.properties")))
+    }
+    return prop.getProperty(propertyKey)
 }
