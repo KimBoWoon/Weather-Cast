@@ -16,3 +16,4 @@ local.properties
 ./sign
 # Project exclude paths
 /buildSrc/build/
+/.idea/
