@@ -1,10 +1,14 @@
 package com.bowoon.android.data.di
 
 import com.bowoon.android.data.service.WeatherCastService
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -14,19 +18,35 @@ import retrofit2.Retrofit
 object RetrofitModule {
     @Provides
     fun provideRetrofit(
-        client: OkHttpClient
+        baseUrl: String,
+        client: OkHttpClient,
+        serialization: Json,
+        jsonMediaType: MediaType
     ): WeatherCastService = Retrofit.Builder()
-        .baseUrl("https://api.openweathermap.org/")
-//        .addConverterFactory()
+        .baseUrl(baseUrl)
+        .addConverterFactory(serialization.asConverterFactory(jsonMediaType))
         .client(client)
         .build()
         .create(WeatherCastService::class.java)
 
     @Provides
-    fun provideOkHttpClient(): OkHttpClient = OkHttpClient().newBuilder().apply {
-        val interceptor = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
+    fun provideOkHttpClient(
+        interceptor: HttpLoggingInterceptor
+    ): OkHttpClient = OkHttpClient().newBuilder().apply {
         addNetworkInterceptor(interceptor)
     }.build()
+
+    @Provides
+    fun provideKotlinSerialization(): Json = Json { ignoreUnknownKeys = true }
+
+    @Provides
+    fun provideJsonMediaType(): MediaType = "application/json".toMediaType()
+
+    @Provides
+    fun provideInterceptor(): HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }
+
+    @Provides
+    fun provideBaseUrl(): String = "https://api.openweathermap.org/"
 }

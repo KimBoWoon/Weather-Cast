@@ -1,12 +1,7 @@
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-import org.jetbrains.kotlin.konan.properties.loadProperties
+import java.io.FileInputStream
 import java.util.*
-import java.io.*
 
 plugins {
-    // kotlin serialization
-//    kotlin(Dependencies.BuildPlugins.jvm) // version "1.6.20" // or kotlin("multiplatform") or any other kotlin plugin
-//    kotlin(Dependencies.BuildPlugins.serialization) // version "1.6.20"
     id(Dependencies.BuildPlugins.library)
     id(Dependencies.BuildPlugins.kotlinAndroid)
     id(Dependencies.BuildPlugins.kapt)

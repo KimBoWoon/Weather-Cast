@@ -1,6 +1,13 @@
 plugins {
     id(Dependencies.BuildPlugins.library)
     id(Dependencies.BuildPlugins.kotlinAndroid)
+    id(Dependencies.BuildPlugins.kapt)
+    // hilt
+    id(Dependencies.BuildPlugins.hilt)
+    id(Dependencies.BuildPlugins.parcelize)
+    // kotlin serialization
+//    kotlin(Dependencies.BuildPlugins.jvm) // version "1.6.20" // or kotlin("multiplatform") or any other kotlin plugin
+    kotlin(Dependencies.BuildPlugins.serialization) // version "1.6.20"
 }
 
 android {
@@ -31,9 +38,21 @@ android {
 
 dependencies {
     arrayOf(
-        Dependencies.Jetpack.core
+        Dependencies.Jetpack.core,
+        Dependencies.Serialization.kotlin,
+        Dependencies.Serialization.converter,
+        // hilt
+        Dependencies.Hilt.hiltAndroid,
     ).forEach {
         implementation(it)
+    }
+
+    arrayOf(
+        // hilt
+        Dependencies.Hilt.hiltAndroidCompiler,
+        Dependencies.Hilt.hiltCompiler
+    ).forEach {
+        kapt(it)
     }
 
     arrayOf(

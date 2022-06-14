@@ -1,7 +1,6 @@
 plugins {
     id(Dependencies.BuildPlugins.application)
     id(Dependencies.BuildPlugins.kotlinAndroid)
-    id(Dependencies.BuildPlugins.parcelize)
     id(Dependencies.BuildPlugins.kapt)
     //hilt
     id(Dependencies.BuildPlugins.hilt)
@@ -40,10 +39,14 @@ android {
 
 dependencies {
     arrayOf(
+        Dependencies.Layout.constraint,
         Dependencies.Jetpack.core,
         Dependencies.Jetpack.appcompat,
         Dependencies.Jetpack.material,
-        Dependencies.Layout.constraint,
+        Dependencies.Jetpack.viewModel,
+        Dependencies.Jetpack.liveData,
+        Dependencies.Jetpack.activity,
+        Dependencies.Jetpack.fragment,
         // hilt
         Dependencies.Hilt.hiltAndroid,
         project(Dependencies.InnerModules.data),

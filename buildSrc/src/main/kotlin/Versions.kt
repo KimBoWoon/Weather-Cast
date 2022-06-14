@@ -7,6 +7,9 @@ object Versions {
         const val core = "1.8.0"
         const val appcompat = "1.4.2"
         const val material = "1.6.1"
+        const val lifecycle = "2.4.1"
+        const val activity = "1.4.0"
+        const val fragment = "1.4.1"
     }
 
     object Gradle {

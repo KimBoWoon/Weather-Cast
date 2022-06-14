@@ -19,6 +19,10 @@ object Dependencies {
         const val core = "androidx.core:core-ktx:${Versions.Jetpack.core}"
         const val appcompat = "androidx.appcompat:appcompat:${Versions.Jetpack.appcompat}"
         const val material = "com.google.android.material:material:${Versions.Jetpack.material}"
+        const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Jetpack.lifecycle}"
+        const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.Jetpack.lifecycle}"
+        const val activity = "androidx.activity:activity-ktx:${Versions.Jetpack.activity}"
+        const val fragment = "androidx.fragment:fragment-ktx:${Versions.Jetpack.fragment}"
     }
 
     object Layout {
