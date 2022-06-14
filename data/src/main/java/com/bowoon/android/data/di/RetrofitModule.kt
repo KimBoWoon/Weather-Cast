@@ -37,7 +37,10 @@ object RetrofitModule {
     }.build()
 
     @Provides
-    fun provideKotlinSerialization(): Json = Json { ignoreUnknownKeys = true }
+    fun provideKotlinSerialization(): Json = Json {
+        ignoreUnknownKeys = true
+        prettyPrint = true
+    }
 
     @Provides
     fun provideJsonMediaType(): MediaType = "application/json".toMediaType()
