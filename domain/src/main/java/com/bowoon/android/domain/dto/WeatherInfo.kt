@@ -66,7 +66,9 @@ data class WeatherInfo(
         val tempMax: Double? = null, // 26.82
         @SerialName("temp_min")
         val tempMin: Double? = null // 23.71
-    ) : Parcelable
+    ) : Parcelable {
+        fun getTemperature(): String = String.format("%.2f°C", temp)
+    }
 
     @Parcelize
     @kotlinx.serialization.Serializable
@@ -94,7 +96,9 @@ data class WeatherInfo(
         val id: Int? = null, // 800
         @SerialName("main")
         val main: String? = null // Clear
-    ) : Parcelable
+    ) : Parcelable {
+        fun getIconUrl(): String = "https://openweathermap.org/img/wn/$icon.png"
+    }
 
     @Parcelize
     @kotlinx.serialization.Serializable
