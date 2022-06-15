@@ -21,16 +21,18 @@ class WeatherInfoVH(
             binding.apply {
                 this.weatherInfo = weatherInfo
 
-                weatherInfo.weather?.forEachIndexed { _, weather ->
-                    val weatherConditionBinding by ViewInflater<IncludeWeatherConditionBinding>(
-                        LayoutInflater.from(binding.root.context),
-                        R.layout.include_weather_condition,
-                        llWeatherConditionGroup
-                    ) {
-                        this.weather = weather
-                    }
+                if (!weatherInfo.weather.isNullOrEmpty() && llWeatherConditionGroup.childCount == 0) {
+                    weatherInfo.weather?.forEachIndexed { _, weather ->
+                        val weatherConditionBinding by ViewInflater<IncludeWeatherConditionBinding>(
+                            LayoutInflater.from(binding.root.context),
+                            R.layout.include_weather_condition,
+                            llWeatherConditionGroup
+                        ) {
+                            this.weather = weather
+                        }
 
-                    llWeatherConditionGroup.addView(weatherConditionBinding.root)
+                        llWeatherConditionGroup.addView(weatherConditionBinding.root)
+                    }
                 }
                 val random = Random(System.currentTimeMillis())
                 val rgb = Color.argb(127, random.nextInt(256), random.nextInt(256), random.nextInt(256))
