@@ -18,9 +18,12 @@ class WeatherInfoVH(
                 tvCity.text = weatherInfo.name
                 tvTemperature.text = weatherInfo.main?.temp.toString()
                 weatherInfo.weather?.forEach {
-                    tvWeatherInfo.text = String.format("%s\n", it?.main)
+                    tvWeatherInfo.text = if (tvWeatherInfo.text.isEmpty()) {
+                        it?.main
+                    } else {
+                        String.format("%s\n%s", tvWeatherInfo.text, it?.main)
+                    }
                 }
-                tvWeatherInfo.text = weatherInfo.weather?.firstOrNull()?.description
                 ivWeatherBg.setBackgroundColor(ResourcesCompat.getColor(binding.root.resources, R.color.purple_200, null))
             }
         }.onSuccess {
