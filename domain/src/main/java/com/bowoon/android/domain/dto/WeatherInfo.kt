@@ -97,6 +97,7 @@ data class WeatherInfo(
         @SerialName("main")
         val main: String? = null // Clear
     ) : Parcelable {
+        fun getWeather(): String = "$main($description)"
         fun getIconUrl(): String = "https://openweathermap.org/img/wn/$icon.png"
     }
 

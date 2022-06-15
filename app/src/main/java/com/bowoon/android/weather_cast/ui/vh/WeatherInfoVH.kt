@@ -25,8 +25,7 @@ class WeatherInfoVH(
                     val weatherConditionBinding by ViewInflater<IncludeWeatherConditionBinding>(
                         LayoutInflater.from(binding.root.context),
                         R.layout.include_weather_condition,
-                        llWeatherConditionGroup,
-                        false
+                        llWeatherConditionGroup
                     ) {
                         this.weather = weather
                     }

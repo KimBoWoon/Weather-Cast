@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
-            android:text="@{weather.main}"
+            android:text="@{weather.weather}"
             tools:text="Clear Sky" />
 
         <androidx.appcompat.widget.AppCompatImageView

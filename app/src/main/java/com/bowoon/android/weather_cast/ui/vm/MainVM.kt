@@ -7,7 +7,9 @@ import com.bowoon.android.domain.dto.WeatherInfo
 import com.bowoon.android.domain.usecase.WeatherCastUseCase
 import com.bowoon.android.weather_cast.base.BaseVM
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
