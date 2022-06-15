@@ -17,13 +17,19 @@ class WeatherCastAdapter(
     private val TAG = javaClass.simpleName
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-        WeatherInfoVH(VhWeatherInfoBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        WeatherInfoVH(
+            VhWeatherInfoBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         items?.let { weatherInfoList ->
             when (holder) {
                 is WeatherInfoVH -> {
-                    weatherInfoList[position]?.let { holder.bind(it) }
+                    holder.bind(weatherInfoList[position])
                 }
                 else -> {
                     Log.e(TAG, "viewholder not found")
@@ -43,7 +49,7 @@ class WeatherCastAdapter(
         ) {
             super.getItemOffsets(outRect, view, parent, state)
 
-            val index = parent.indexOfChild(view)
+            val index = parent.getChildAdapterPosition(view)
             val lastIndex = (parent.adapter as? WeatherCastAdapter)?.items?.lastIndex
 
             outRect.left = 10.dp
@@ -57,6 +63,10 @@ class WeatherCastAdapter(
                 lastIndex -> {
                     outRect.top = 5.dp
                     outRect.bottom = 10.dp
+                }
+                else -> {
+                    outRect.top = 5.dp
+                    outRect.bottom = 5.dp
                 }
             }
         }
