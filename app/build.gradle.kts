@@ -49,6 +49,7 @@ dependencies {
         Dependencies.Jetpack.fragment,
         // hilt
         Dependencies.Hilt.hiltAndroid,
+        Dependencies.Glide.glide,
         project(Dependencies.InnerModules.data),
         project(Dependencies.InnerModules.domain)
     ).forEach {
@@ -58,7 +59,8 @@ dependencies {
     arrayOf(
         // hilt
         Dependencies.Hilt.hiltAndroidCompiler,
-        Dependencies.Hilt.hiltCompiler
+        Dependencies.Hilt.hiltCompiler,
+        Dependencies.Glide.glideCompiler
     ).forEach {
         kapt(it)
     }

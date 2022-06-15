@@ -45,6 +45,11 @@ object Dependencies {
         const val converter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.Serialization.converter}"
     }
 
+    object Glide {
+        const val glide = "com.github.bumptech.glide:glide:${Versions.Glide.glide}"
+        const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.Glide.glide}"
+    }
+
     object Hilt {
         const val plugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.Hilt.hilt}"
         const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.Hilt.hilt}"

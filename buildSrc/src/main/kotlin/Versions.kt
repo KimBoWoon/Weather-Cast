@@ -34,6 +34,10 @@ object Versions {
         const val converter = "0.8.0"
     }
 
+    object Glide {
+        const val glide = "4.13.0"
+    }
+
     object Hilt {
         const val hilt = "2.42"
         const val compiler = "1.0.0"

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_weather_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            tools:text="Clear Sky" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_weather_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            tools:background="@tools:sample/avatars" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
