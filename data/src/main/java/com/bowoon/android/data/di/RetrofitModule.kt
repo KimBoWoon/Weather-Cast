@@ -1,7 +1,9 @@
 package com.bowoon.android.data.di
 
+import com.bowoon.android.data.BuildConfig
 import com.bowoon.android.data.service.WeatherCastService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.localebro.okhttpprofiler.OkHttpProfilerInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,6 +36,9 @@ object RetrofitModule {
         interceptor: HttpLoggingInterceptor
     ): OkHttpClient = OkHttpClient().newBuilder().apply {
         addNetworkInterceptor(interceptor)
+        if (BuildConfig.DEBUG) {
+            addInterceptor(OkHttpProfilerInterceptor())
+        }
     }.build()
 
     @Provides

@@ -27,6 +27,7 @@ object Versions {
 
     object OkHttp {
         const val okHttp = "4.10.0"
+        const val profiler = "1.0.8"
     }
 
     object Serialization {

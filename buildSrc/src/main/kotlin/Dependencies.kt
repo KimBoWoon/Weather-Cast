@@ -37,6 +37,7 @@ object Dependencies {
         const val bom = "com.squareup.okhttp3:okhttp-bom:${Versions.OkHttp.okHttp}"
         const val okhttp = "com.squareup.okhttp3:okhttp"
         const val logging = "com.squareup.okhttp3:logging-interceptor"
+        const val profiler = "com.localebro:okhttpprofiler:${Versions.OkHttp.profiler}"
     }
 
     object Serialization {

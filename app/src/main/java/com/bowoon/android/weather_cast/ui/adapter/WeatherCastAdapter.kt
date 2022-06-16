@@ -1,7 +1,6 @@
 package com.bowoon.android.weather_cast.ui.adapter
 
 import android.graphics.Rect
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bowoon.android.domain.dto.WeatherInfo
 import com.bowoon.android.weather_cast.databinding.VhWeatherInfoBinding
 import com.bowoon.android.weather_cast.ui.vh.WeatherInfoVH
+import com.bowoon.android.weather_cast.util.Log
 import com.bowoon.android.weather_cast.util.dp
 
 class WeatherCastAdapter(
@@ -32,7 +32,7 @@ class WeatherCastAdapter(
                     holder.bind(weatherInfoList[position])
                 }
                 else -> {
-                    Log.e(TAG, "viewholder not found")
+                    Log.e("viewholder not found")
                 }
             }
         }

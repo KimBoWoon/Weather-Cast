@@ -44,6 +44,7 @@ dependencies {
         Dependencies.OkHttp.bom,
         Dependencies.OkHttp.okhttp,
         Dependencies.OkHttp.logging,
+        Dependencies.OkHttp.profiler,
         Dependencies.Serialization.kotlin,
         Dependencies.Serialization.converter,
         // hilt
