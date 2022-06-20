@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -25,12 +25,12 @@ import com.bowoon.android.domain.dto.WeatherInfo
 import com.bowoon.android.weather_cast.R
 import com.bowoon.android.weather_cast.base.BaseActivity
 import com.bowoon.android.weather_cast.databinding.ActivityMainBinding
-import com.bowoon.android.weather_cast.ui.adapter.WeatherCastAdapter
 import com.bowoon.android.weather_cast.ui.vm.MainVM
 import com.bowoon.android.weather_cast.util.Log
+import com.bowoon.android.weather_cast.util.NONE
+import com.bowoon.android.weather_cast.util.getWeatherColor
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import kotlin.random.Random
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(
@@ -126,9 +126,9 @@ fun WeatherCastActionBar(snackbarHostState: SnackbarHostState) {
 fun WeatherCastContent(weatherInfo: List<WeatherInfo?>?) {
     LazyColumn {
         weatherInfo?.let {
-            items(weatherInfo) { weather ->
+            itemsIndexed(weatherInfo) { index, weather ->
                 weather?.let {
-                    WeatherItem(weather)
+                    WeatherItem(index, weatherInfo.lastIndex, weather)
                 }
             }
         }
@@ -136,22 +136,21 @@ fun WeatherCastContent(weatherInfo: List<WeatherInfo?>?) {
 }
 
 @Composable
-fun WeatherItem(weatherInfo: WeatherInfo) {
-    val random = Random(System.currentTimeMillis())
-
-    Card(shape = RoundedCornerShape(10.dp), modifier = Modifier.padding(8.dp)) {
+fun WeatherItem(index: Int, lastIndex: Int, weatherInfo: WeatherInfo) {
+    Card(
+        shape = RoundedCornerShape(10.dp),
+        modifier = Modifier.padding(
+            start = 8.dp,
+            top = if (index == 0) 8.dp else 4.dp,
+            end = 8.dp,
+            bottom = if (index == lastIndex) 8.dp else 4.dp
+        )
+    ) {
         Column(
             modifier = Modifier
                 .wrapContentHeight(Alignment.Top)
                 .fillMaxWidth()
-                .background(
-                    Color(
-                        random.nextInt(256),
-                        random.nextInt(256),
-                        random.nextInt(256),
-                        127
-                    )
-                )
+                .background(getWeatherColor(weatherInfo.weather?.firstOrNull()?.id ?: 0))
         ) {
             Row {
                 Text(
@@ -191,7 +190,5 @@ fun WeatherItem(weatherInfo: WeatherInfo) {
 fun PreviewWeatherItem() {
     val weatherInfo = WeatherInfo()
 
-    WeatherItem(weatherInfo = weatherInfo)
+    WeatherItem(0, 0, weatherInfo)
 }
-
-const val NONE = "NONE"
