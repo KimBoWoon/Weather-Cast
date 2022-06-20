@@ -1,22 +1,23 @@
 package com.bowoon.android.weather_cast.ui.vm
 
-import androidx.lifecycle.MutableLiveData
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewModelScope
 import com.bowoon.android.domain.dto.Geocoding
 import com.bowoon.android.domain.dto.WeatherInfo
 import com.bowoon.android.domain.usecase.WeatherCastUseCase
 import com.bowoon.android.weather_cast.base.BaseVM
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class MainVM @Inject constructor(
     private val weatherCastUseCase: WeatherCastUseCase
 ) : BaseVM() {
-    val weatherInfoList = MutableLiveData<List<WeatherInfo?>>()
+//    val weatherInfoList = MutableLiveData<List<WeatherInfo?>>()
+    var weatherInfoList: List<WeatherInfo> by mutableStateOf(listOf())
     val geocoding = mutableListOf<Geocoding>(
         Geocoding(35f, 139f),
         Geocoding(37.5666805f, 126.9784147f),
@@ -322,7 +323,8 @@ class MainVM @Inject constructor(
             val weatherList = geocoding.map { geo ->
                 weatherCastUseCase.getWeather(geo.lat, geo.lon)
             }
-            weatherInfoList.postValue(weatherList)
+//            weatherInfoList.postValue(weatherList)
+            weatherInfoList = weatherList
         }
     }
 }

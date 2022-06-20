@@ -49,11 +49,12 @@ object Log {
             val className = className.substring(className.lastIndexOf(".") + 1)
             val linkString = "(${fileName}:${lineNumber})"
             val pathString = "APP# $className.${methodName}"
-            return if (pathString.length + linkString.length > 80) {
-                pathString.substring(0, 80 - linkString.length) + "..." + linkString
-            } else {
-                pathString + linkString
-            }
+            return pathString + linkString
+//            return if (pathString.length + linkString.length > 80) {
+//                pathString.substring(0, 80 - linkString.length) + "..." + linkString
+//            } else {
+//                pathString + linkString
+//            }
         }
         return null
     }

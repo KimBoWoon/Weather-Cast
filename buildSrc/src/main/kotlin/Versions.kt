@@ -1,6 +1,7 @@
 object Versions {
     object Kotlin {
-        const val kotlin = "1.6.20"
+//        const val kotlin = "1.6.20"
+        const val kotlin = "1.6.10"
     }
 
     object Jetpack {
@@ -42,6 +43,11 @@ object Versions {
     object Hilt {
         const val hilt = "2.42"
         const val compiler = "1.0.0"
+    }
+
+    object Compose {
+        const val compose = "1.1.1"
+        const val activity = "1.4.0"
     }
 
     object Test {

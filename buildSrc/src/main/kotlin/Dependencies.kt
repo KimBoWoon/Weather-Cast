@@ -58,6 +58,15 @@ object Dependencies {
         const val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.Hilt.compiler}"
     }
 
+    object Compose {
+        const val ui = "androidx.compose.ui:ui:${Versions.Compose.compose}"
+        const val material = "androidx.compose.material:material:${Versions.Compose.compose}"
+        const val uiToolPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.Compose.compose}"
+        const val uiTest = "androidx.compose.ui:ui-test-junit4:${Versions.Compose.compose}"
+        const val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.Compose.compose}"
+        const val activity = "androidx.activity:activity-compose:${Versions.Compose.activity}"
+    }
+
     object Test {
         const val junit = "junit:junit:${Versions.Test.junit}"
         const val junitExt = "androidx.test.ext:junit:${Versions.Test.junitExt}"

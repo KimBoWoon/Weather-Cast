@@ -1,14 +1,14 @@
 package com.bowoon.android.weather_cast.base
 
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.annotation.CallSuper
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
 abstract class BaseActivity<T: ViewDataBinding>(
     private val layoutId: Int
-) : AppCompatActivity() {
+) : ComponentActivity() {
     protected val binding: T by lazy {
         DataBindingUtil.setContentView(this, layoutId)
     }

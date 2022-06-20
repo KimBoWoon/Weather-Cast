@@ -34,6 +34,10 @@ android {
     }
     buildFeatures {
         dataBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.Compose.compose
     }
 }
 
@@ -50,6 +54,10 @@ dependencies {
         // hilt
         Dependencies.Hilt.hiltAndroid,
         Dependencies.Glide.glide,
+        Dependencies.Compose.ui,
+        Dependencies.Compose.material,
+        Dependencies.Compose.uiToolPreview,
+        Dependencies.Compose.activity,
         project(Dependencies.InnerModules.data),
         project(Dependencies.InnerModules.domain)
     ).forEach {
@@ -73,8 +81,15 @@ dependencies {
 
     arrayOf(
         Dependencies.Test.junitExt,
-        Dependencies.Test.espresso
+        Dependencies.Test.espresso,
+        Dependencies.Compose.uiTest
     ).forEach {
         androidTestImplementation(it)
+    }
+
+    arrayOf(
+        Dependencies.Compose.uiTooling
+    ).forEach {
+        debugImplementation(it)
     }
 }
