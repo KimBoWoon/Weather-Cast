@@ -18,6 +18,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -100,7 +101,7 @@ fun WeatherCastCompose(viewModel: MainVM = viewModel()) {
                     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
                         Text(
                             text = (status as Status.Failure).message,
-                            fontSize = 20.sp,
+                            fontSize = dpToSp(20.dp),
                             color = Color.Black
                         )
                     }
@@ -116,7 +117,7 @@ fun WeatherCastActionBar(snackbarHostState: SnackbarHostState) {
     val scope = rememberCoroutineScope()
 
     TopAppBar(
-        title = { Text(text = "날씨", color = Color.White) },
+        title = { Text(text = "날씨", color = Color.White, fontSize = dpToSp(20.dp)) },
         navigationIcon = {
             IconButton(onClick = {
                 scope.launch {
@@ -188,14 +189,14 @@ fun WeatherItem(index: Int, lastIndex: Int, weatherInfo: WeatherInfo) {
                 Text(
                     text = weatherInfo.name ?: NONE,
                     color = Color.Black,
-                    fontSize = 20.sp,
+                    fontSize = dpToSp(20.dp),
                     modifier = Modifier.padding(start = 16.dp, top = 10.dp)
                 )
                 Spacer(modifier = Modifier.padding(end = 5.dp))
                 Text(
                     text = "${weatherInfo.main?.temp?.toString() ?: NONE}°C",
                     color = Color.Black,
-                    fontSize = 20.sp,
+                    fontSize = dpToSp(20.dp),
                     modifier = Modifier.padding(top = 10.dp)
                 )
             }
@@ -204,7 +205,10 @@ fun WeatherItem(index: Int, lastIndex: Int, weatherInfo: WeatherInfo) {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    Text(text = "${it?.main ?: NONE}(${it?.description ?: NONE})")
+                    Text(
+                        text = "${it?.main ?: NONE}(${it?.description ?: NONE})",
+                        fontSize = dpToSp(18.dp)
+                    )
                 }
             }
             Spacer(modifier = Modifier.padding(bottom = 10.dp))
@@ -218,7 +222,8 @@ fun WeatherItem(index: Int, lastIndex: Int, weatherInfo: WeatherInfo) {
                     Text(
                         text = "최고 온도 : ${weatherInfo.main?.tempMax}°C\n최저 온도 : ${weatherInfo.main?.tempMin}°C",
                         color = MaterialTheme.colors.secondaryVariant,
-                        style = MaterialTheme.typography.subtitle2
+                        style = MaterialTheme.typography.subtitle2,
+                        fontSize = dpToSp(15.dp)
                     )
                     Spacer(modifier = Modifier.height(4.dp))
 
@@ -229,7 +234,8 @@ fun WeatherItem(index: Int, lastIndex: Int, weatherInfo: WeatherInfo) {
 
                     Text(
                         text = windText,
-                        style = MaterialTheme.typography.body2
+                        style = MaterialTheme.typography.body2,
+                        fontSize = dpToSp(15.dp)
                     )
                 }
             }
@@ -238,10 +244,16 @@ fun WeatherItem(index: Int, lastIndex: Int, weatherInfo: WeatherInfo) {
 }
 
 @Preview(
-    name = "preview",
+    name = "preview light",
     showBackground = true,
     showSystemUi = false,
     uiMode = Configuration.UI_MODE_NIGHT_NO
+)
+@Preview(
+    name = "preview dark",
+    showBackground = true,
+    showSystemUi = false,
+    uiMode = Configuration.UI_MODE_NIGHT_YES
 )
 @Composable
 fun PreviewWeatherItem() {
@@ -249,3 +261,6 @@ fun PreviewWeatherItem() {
 
     WeatherItem(0, 0, weatherInfo)
 }
+
+@Composable
+fun dpToSp(value: Dp) = with(LocalDensity.current) { value.toSp() }
