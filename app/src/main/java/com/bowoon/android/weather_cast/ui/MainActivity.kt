@@ -28,10 +28,7 @@ import com.bowoon.android.weather_cast.R
 import com.bowoon.android.weather_cast.base.BaseActivity
 import com.bowoon.android.weather_cast.databinding.ActivityMainBinding
 import com.bowoon.android.weather_cast.ui.vm.MainVM
-import com.bowoon.android.weather_cast.util.Log
-import com.bowoon.android.weather_cast.util.NONE
-import com.bowoon.android.weather_cast.util.Status
-import com.bowoon.android.weather_cast.util.getWeatherColor
+import com.bowoon.android.weather_cast.util.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -225,7 +222,7 @@ fun WeatherItem(index: Int, lastIndex: Int, weatherInfo: WeatherInfo) {
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "${weatherInfo.wind?.speed}, ${weatherInfo.wind?.deg}, ${weatherInfo.wind?.gust}",
+                        text = "풍속 : ${weatherInfo.wind?.speed}\n풍향 : ${getDegree(weatherInfo.wind?.deg ?: 0)}\n돌풍 : ${weatherInfo.wind?.gust}",
                         modifier = Modifier.padding(all = 4.dp),
                         style = MaterialTheme.typography.body2
                     )
