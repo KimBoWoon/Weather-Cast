@@ -10,7 +10,7 @@ interface WeatherCastService {
     suspend fun getWeather(
         @Query("lat") lat: Float,
         @Query("lon") lon: Float,
-        @Query("lang") lang: String = "kr",
+        @Query("lang") lang: String = "en",
         @Query("units") units: String = "metric",
         @Query("appid") appId: String = BuildConfig.openWeatherKey
     ): WeatherInfo

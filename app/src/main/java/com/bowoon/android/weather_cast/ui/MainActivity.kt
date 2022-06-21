@@ -221,9 +221,14 @@ fun WeatherItem(index: Int, lastIndex: Int, weatherInfo: WeatherInfo) {
                         style = MaterialTheme.typography.subtitle2
                     )
                     Spacer(modifier = Modifier.height(4.dp))
+
+                    var windText = ""
+                    weatherInfo.wind?.speed?.let { windText += "풍속 : $it"}
+                    weatherInfo.wind?.deg?.let { windText += "\n풍향 : $it"}
+                    weatherInfo.wind?.gust?.let { windText += "\n돌풍 : $it"}
+
                     Text(
-                        text = "풍속 : ${weatherInfo.wind?.speed}\n풍향 : ${getDegree(weatherInfo.wind?.deg ?: 0)}\n돌풍 : ${weatherInfo.wind?.gust}",
-                        modifier = Modifier.padding(all = 4.dp),
+                        text = windText,
                         style = MaterialTheme.typography.body2
                     )
                 }
