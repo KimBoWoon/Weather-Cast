@@ -1,12 +1,16 @@
 object Versions {
     object Kotlin {
-        const val kotlin = "1.6.20"
+//        const val kotlin = "1.6.20"
+        const val kotlin = "1.6.10"
     }
 
     object Jetpack {
         const val core = "1.8.0"
         const val appcompat = "1.4.2"
         const val material = "1.6.1"
+        const val lifecycle = "2.4.1"
+        const val activity = "1.4.0"
+        const val fragment = "1.4.1"
     }
 
     object Gradle {
@@ -24,6 +28,7 @@ object Versions {
 
     object OkHttp {
         const val okHttp = "4.10.0"
+        const val profiler = "1.0.8"
     }
 
     object Serialization {
@@ -31,9 +36,18 @@ object Versions {
         const val converter = "0.8.0"
     }
 
+    object Glide {
+        const val glide = "4.13.0"
+    }
+
     object Hilt {
         const val hilt = "2.42"
         const val compiler = "1.0.0"
+    }
+
+    object Compose {
+        const val compose = "1.1.1"
+        const val activity = "1.4.0"
     }
 
     object Test {
