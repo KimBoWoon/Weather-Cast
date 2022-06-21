@@ -65,6 +65,7 @@ object Dependencies {
         const val uiTest = "androidx.compose.ui:ui-test-junit4:${Versions.Compose.compose}"
         const val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.Compose.compose}"
         const val activity = "androidx.activity:activity-compose:${Versions.Compose.activity}"
+        const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.Jetpack.lifecycle}"
     }
 
     object Test {

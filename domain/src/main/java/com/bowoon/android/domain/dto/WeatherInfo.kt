@@ -107,6 +107,8 @@ data class WeatherInfo(
         @SerialName("deg")
         val deg: Int? = null, // 20
         @SerialName("speed")
-        val speed: Double? = null // 4.12
+        val speed: Double? = null, // 4.12
+        @SerialName("gust")
+        val gust: Double? = null
     ) : Parcelable
 }

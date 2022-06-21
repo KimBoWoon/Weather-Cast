@@ -58,6 +58,7 @@ dependencies {
         Dependencies.Compose.material,
         Dependencies.Compose.uiToolPreview,
         Dependencies.Compose.activity,
+        Dependencies.Compose.viewModel,
         project(Dependencies.InnerModules.data),
         project(Dependencies.InnerModules.domain)
     ).forEach {
