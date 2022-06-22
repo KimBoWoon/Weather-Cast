@@ -17,10 +17,10 @@ class MainVM @Inject constructor(
 
     init {
         viewModelScope.launch {
-            weatherInfoStatus.value = Status.Loading
-
             runCatching {
-                geocoding.take(10).map { geo ->
+                weatherInfoStatus.value = Status.Loading
+
+                geocoding.shuffled().take(20).map { geo ->
                     weatherCastUseCase.getWeather(geo.lat, geo.lon)
                 }
             }.onSuccess { weatherList ->

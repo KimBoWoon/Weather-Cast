@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.bowoon.android.domain.dto.WeatherInfo
 import com.bowoon.android.domain.usecase.WeatherCastUseCase
 import com.bowoon.android.jetpack.base.BaseVM
+import com.bowoon.android.jetpack.util.Log
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,10 +18,15 @@ class MainVM @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val weatherList = geocoding.take(10).map {
-                weatherCastUseCase.getWeather(it.lat, it.lon)
+            runCatching {
+                geocoding.shuffled().take(20).map {
+                    weatherCastUseCase.getWeather(it.lat, it.lon)
+                }
+            }.onSuccess { weatherList ->
+                weatherInfoList.postValue(weatherList)
+            }.onFailure { e ->
+                Log.e(e.message ?: "something wrong")
             }
-            weatherInfoList.postValue(weatherList)
         }
     }
 }
