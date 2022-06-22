@@ -1,11 +1,14 @@
 package com.bowoon.android.compose.ui.util
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import com.bowoon.android.compose.ui.main.WeatherItem
+import androidx.compose.ui.unit.dp
+import com.bowoon.android.compose.ui.weather.WeatherItem
 import com.bowoon.android.domain.dto.WeatherInfo
 
 @Preview(
@@ -23,8 +26,9 @@ import com.bowoon.android.domain.dto.WeatherInfo
 @Composable
 fun PreviewWeatherItem() {
     val weatherInfo = WeatherInfo()
+    val modifier = Modifier.padding()
 
-    WeatherItem(0, 0, weatherInfo)
+    WeatherItem(modifier, weatherInfo)
 }
 
 @Composable

@@ -1,4 +1,4 @@
-package com.bowoon.android.compose.ui.main
+package com.bowoon.android.compose.ui.weather
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
@@ -16,29 +16,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.bowoon.android.compose.ui.util.dpToSp
-import com.bowoon.android.compose.util.Log
 import com.bowoon.android.compose.util.NONE
 import com.bowoon.android.compose.util.getDegree
 import com.bowoon.android.compose.util.getWeatherColor
 import com.bowoon.android.domain.dto.WeatherInfo
+import kotlinx.coroutines.Job
 
 @Composable
-fun WeatherItem(index: Int, lastIndex: Int, weatherInfo: WeatherInfo) {
+fun WeatherItem(
+    modifier: Modifier,
+    weatherInfo: WeatherInfo,
+    clickEvent: (() -> Job)? = null
+) {
     Card(
         shape = RoundedCornerShape(10.dp),
-        modifier = Modifier
-            .padding(
-                start = 8.dp,
-                top = if (index == 0) 8.dp else 4.dp,
-                end = 8.dp,
-                bottom = if (index == lastIndex) 8.dp else 4.dp
-            )
-            .clickable(
-                enabled = true,
-                onClick = {
-                    Log.d("${weatherInfo.name ?: NONE} clicked")
-                }
-            )
+        modifier = modifier
     ) {
         var isExpanded by remember { mutableStateOf(false) }
 
@@ -47,7 +39,10 @@ fun WeatherItem(index: Int, lastIndex: Int, weatherInfo: WeatherInfo) {
                 .wrapContentHeight(Alignment.Top)
                 .fillMaxWidth()
                 .background(getWeatherColor(weatherInfo.weather?.firstOrNull()?.id ?: 0))
-                .clickable { isExpanded = !isExpanded }
+                .clickable {
+                    isExpanded = !isExpanded
+                    clickEvent?.invoke()
+                }
         ) {
             Row {
                 Text(

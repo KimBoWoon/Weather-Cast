@@ -113,7 +113,7 @@ data class WeatherInfo(
         @SerialName("gust")
         val gust: Double? = null
     ) : Parcelable {
-        fun getWindSpeed(): String = String.format("풍속 : %.2f°C", speed)
-        fun getWindGust(): String = String.format("풍속 : %.2f°C", gust)
+        fun getWindSpeed(): String = String.format("풍속 : %.2f㎧", speed)
+        fun getWindGust(): String = String.format("풍속 : %.2f㎧", gust)
     }
 }
