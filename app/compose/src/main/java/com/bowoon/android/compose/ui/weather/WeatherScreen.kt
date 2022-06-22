@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.bowoon.android.compose.ui.util.dpToSp
 import com.bowoon.android.compose.util.Log
 import com.bowoon.android.compose.util.NONE
+import com.bowoon.android.compose.util.getDegree
 import com.bowoon.android.compose.util.getWeatherColor
 import com.bowoon.android.domain.dto.WeatherInfo
 
@@ -92,9 +93,9 @@ fun WeatherItem(index: Int, lastIndex: Int, weatherInfo: WeatherInfo) {
                     Spacer(modifier = Modifier.height(4.dp))
 
                     var windText = ""
-                    weatherInfo.wind?.speed?.let { windText += "풍속 : $it" }
-                    weatherInfo.wind?.deg?.let { windText += "\n풍향 : $it" }
-                    weatherInfo.wind?.gust?.let { windText += "\n돌풍 : $it" }
+                    weatherInfo.wind?.speed?.let { windText += "풍속 : $it㎧" }
+                    weatherInfo.wind?.deg?.let { windText += "\n풍향 : ${getDegree(it)}" }
+                    weatherInfo.wind?.gust?.let { windText += "\n돌풍 : $it㎧" }
 
                     Text(
                         text = windText,
