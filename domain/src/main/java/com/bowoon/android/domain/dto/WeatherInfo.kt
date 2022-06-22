@@ -68,6 +68,8 @@ data class WeatherInfo(
         val tempMin: Double? = null // 23.71
     ) : Parcelable {
         fun getTemperature(): String = String.format("%.2f°C", temp)
+        fun getMaxTemperature(): String = String.format("최고 온도 : %.2f°C", tempMax)
+        fun getMinTemperature(): String = String.format("최저 온도 : %.2f°C", tempMin)
     }
 
     @Parcelize
@@ -110,5 +112,8 @@ data class WeatherInfo(
         val speed: Double? = null, // 4.12
         @SerialName("gust")
         val gust: Double? = null
-    ) : Parcelable
+    ) : Parcelable {
+        fun getWindSpeed(): String = String.format("풍속 : %.2f°C", speed)
+        fun getWindGust(): String = String.format("풍속 : %.2f°C", gust)
+    }
 }

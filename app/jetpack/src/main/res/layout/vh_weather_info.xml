@@ -8,11 +8,14 @@
         <variable
             name="weatherInfo"
             type="com.bowoon.android.domain.dto.WeatherInfo" />
+
+        <import type="com.bowoon.android.jetpack.util.UtilKt" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:foreground="?android:selectableItemBackground">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_weather_bg"
@@ -49,13 +52,76 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_weather_condition"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="@id/iv_weather_bg"
+            app:layout_constraintBottom_toTopOf="@id/cl_expand_group"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_city"
             tools:listitem="@layout/vh_weather_condition" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_expand_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_weather_condition"
+            tools:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_max_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@{weatherInfo.main.maxTemperature}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="최고 온도 : 26.72" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_min_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@{weatherInfo.main.minTemperature}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_max_temp"
+                tools:text="최저 온도 : 26.72" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_wind_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@{weatherInfo.wind.windSpeed}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_min_temp"
+                tools:text="풍속 : 26.72" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_wind_deg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@{&quot;풍향 : &quot; + UtilKt.getDegree(weatherInfo.wind.deg)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_wind_speed"
+                tools:text="풍향 : 26.72" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_wind_gust"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@{weatherInfo.wind.windGust}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_wind_deg"
+                tools:text="돌풍 : 26.72" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

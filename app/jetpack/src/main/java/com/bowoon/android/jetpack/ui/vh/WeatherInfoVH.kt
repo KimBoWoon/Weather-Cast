@@ -1,6 +1,7 @@
 package com.bowoon.android.jetpack.ui.vh
 
 import android.graphics.Color
+import androidx.core.view.isVisible
 import com.bowoon.android.domain.dto.WeatherInfo
 import com.bowoon.android.jetpack.base.BaseVH
 import com.bowoon.android.jetpack.databinding.VhWeatherInfoBinding
@@ -13,6 +14,7 @@ class WeatherInfoVH(
 ) : BaseVH<VhWeatherInfoBinding, WeatherInfo>(binding) {
     private val random = Random(System.currentTimeMillis())
     private val rgb = Color.argb(127, random.nextInt(256), random.nextInt(256), random.nextInt(256))
+    private var expanded = false
 
     override fun bind(weatherInfo: WeatherInfo?) {
         runCatching {
@@ -25,6 +27,12 @@ class WeatherInfoVH(
                     adapter = WeatherConditionAdapter(weatherInfo.weather)
                 }
                 ivWeatherBg.setBackgroundColor(rgb)
+
+                root.setOnClickListener {
+                    expanded = !expanded
+                    clExpandGroup.isVisible = expanded
+                    executePendingBindings()
+                }
             }
         }.onSuccess {
             Log.d("WeatherInfoVH success")
