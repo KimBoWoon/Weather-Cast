@@ -1,6 +1,7 @@
 package com.bowoon.android.jetpack.util
 
 import android.content.res.Resources
+import com.bowoon.android.domain.dto.WeatherInfo
 import kotlin.math.roundToInt
 
 const val NONE = "NONE"
@@ -56,4 +57,10 @@ enum class WindType(
     NNW(15, "북북서"),
     N16(16, "북"),
     NONE(17, "NONE");
+}
+
+sealed class Status {
+    object Loading : Status()
+    data class Success(val data: List<WeatherInfo>) : Status()
+    data class Failure(val message: String) : Status()
 }

@@ -13,6 +13,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.bowoon.android.compose.ui.util.dpToSp
@@ -20,6 +22,7 @@ import com.bowoon.android.compose.util.NONE
 import com.bowoon.android.compose.util.getDegree
 import com.bowoon.android.compose.util.getWeatherColor
 import com.bowoon.android.domain.dto.WeatherInfo
+import com.skydoves.landscapist.glide.GlideImage
 import kotlinx.coroutines.Job
 
 @Composable
@@ -68,6 +71,12 @@ fun WeatherItem(
                         text = "${it?.main ?: NONE}(${it?.description ?: NONE})",
                         fontSize = dpToSp(18.dp)
                     )
+
+                    GlideImage(
+                        imageModel = it?.getIconUrl(),
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.height(30.dp).width(30.dp),
+                    )
                 }
             }
             Spacer(modifier = Modifier.padding(bottom = 10.dp))
@@ -101,4 +110,10 @@ fun WeatherItem(
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun preview() {
+    WeatherItem(modifier = Modifier, WeatherInfo(), null)
 }

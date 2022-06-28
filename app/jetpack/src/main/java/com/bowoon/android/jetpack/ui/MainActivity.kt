@@ -3,12 +3,17 @@ package com.bowoon.android.jetpack.ui
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import com.bowoon.android.jetpack.R
 import com.bowoon.android.jetpack.base.BaseActivity
 import com.bowoon.android.jetpack.databinding.ActivityMainBinding
 import com.bowoon.android.jetpack.ui.adapter.WeatherCastAdapter
 import com.bowoon.android.jetpack.ui.vm.MainVM
+import com.bowoon.android.jetpack.util.Log
+import com.bowoon.android.jetpack.util.Status
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(
@@ -39,10 +44,22 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
     }
 
     override fun initLiveData() {
-        viewModel.weatherInfoList.observe(this) { weatherInfoList ->
-            binding.pbLoading.isVisible = false
-            binding.rvWeatherInfoList.apply {
-                adapter = WeatherCastAdapter(weatherInfoList)
+        lifecycleScope.launch {
+            viewModel.weatherInfoList.collect {
+                when (it) {
+                    is Status.Loading -> {
+                        Log.d("data loading...")
+                    }
+                    is Status.Success -> {
+                        binding.pbLoading.isVisible = false
+                        binding.rvWeatherInfoList.apply {
+                            adapter = WeatherCastAdapter(it.data)
+                        }
+                    }
+                    is Status.Failure -> {
+                        Log.e(it.message)
+                    }
+                }
             }
         }
     }

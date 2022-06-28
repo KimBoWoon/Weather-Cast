@@ -1,12 +1,11 @@
 package com.bowoon.android.jetpack.ui.vm
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.bowoon.android.domain.dto.WeatherInfo
 import com.bowoon.android.domain.usecase.WeatherCastUseCase
 import com.bowoon.android.jetpack.base.BaseVM
-import com.bowoon.android.jetpack.util.Log
+import com.bowoon.android.jetpack.util.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,7 +13,7 @@ import javax.inject.Inject
 class MainVM @Inject constructor(
     private val weatherCastUseCase: WeatherCastUseCase
 ) : BaseVM() {
-    val weatherInfoList = MutableLiveData<List<WeatherInfo?>>()
+    val weatherInfoList = MutableStateFlow<Status>(Status.Loading)
 
     init {
         viewModelScope.launch {
@@ -23,9 +22,9 @@ class MainVM @Inject constructor(
                     weatherCastUseCase.getWeather(it.lat, it.lon)
                 }
             }.onSuccess { weatherList ->
-                weatherInfoList.postValue(weatherList)
+                weatherInfoList.value = Status.Success(weatherList)
             }.onFailure { e ->
-                Log.e(e.message ?: "something wrong")
+                weatherInfoList.value = Status.Failure(e.message ?: "something wrong")
             }
         }
     }

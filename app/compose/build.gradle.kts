@@ -41,6 +41,10 @@ android {
 }
 
 dependencies {
+//    implementation("com.google.android.play:app-update-ktx:2.0.0")
+    implementation("com.google.android.material:material:1.6.1")
+    implementation("com.github.skydoves:landscapist-glide:1.5.2")
+
     arrayOf(
         Dependencies.Layout.constraint,
         // hilt
