@@ -38,6 +38,10 @@ android {
 }
 
 dependencies {
+    implementation("com.google.android.play:app-update-ktx:2.0.0") {
+        exclude(group = "com.android.support", module = "support-v4")
+    }
+
     arrayOf(
         Dependencies.Layout.constraint,
         Dependencies.Jetpack.core,

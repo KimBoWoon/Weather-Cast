@@ -112,8 +112,11 @@ fun WeatherItem(
     }
 }
 
-@Preview
+@Preview(
+    name = "weather item preview",
+    showBackground = true
+)
 @Composable
-fun preview() {
+fun Preview() {
     WeatherItem(modifier = Modifier, WeatherInfo(), null)
 }

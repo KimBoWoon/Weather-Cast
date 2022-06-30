@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bowoon.android.data.util.Log
 import com.bowoon.android.domain.dto.WeatherInfo
 import com.bowoon.android.jetpack.databinding.VhWeatherInfoBinding
 import com.bowoon.android.jetpack.ui.vh.WeatherInfoVH
-import com.bowoon.android.jetpack.util.Log
 import com.bowoon.android.jetpack.util.dp
 
 class WeatherCastAdapter(

@@ -2,7 +2,6 @@ package com.bowoon.android.compose.util
 
 import android.content.res.Resources
 import androidx.compose.ui.graphics.Color
-import com.bowoon.android.domain.dto.WeatherInfo
 import kotlin.math.roundToInt
 
 const val NONE = "NONE"
@@ -80,10 +79,4 @@ enum class WindType(
 //            return null
 //        }
 //    }
-}
-
-sealed class Status {
-    object Loading : Status()
-    data class Success(val data: List<WeatherInfo>) : Status()
-    data class Failure(val message: String) : Status()
 }

@@ -2,11 +2,11 @@ package com.bowoon.android.jetpack.ui.vh
 
 import android.graphics.Color
 import androidx.core.view.isVisible
+import com.bowoon.android.data.util.Log
 import com.bowoon.android.domain.dto.WeatherInfo
 import com.bowoon.android.jetpack.base.BaseVH
 import com.bowoon.android.jetpack.databinding.VhWeatherInfoBinding
 import com.bowoon.android.jetpack.ui.adapter.WeatherConditionAdapter
-import com.bowoon.android.jetpack.util.Log
 import kotlin.random.Random
 
 class WeatherInfoVH(

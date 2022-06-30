@@ -3,10 +3,10 @@ package com.bowoon.android.jetpack.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bowoon.android.data.util.Log
 import com.bowoon.android.domain.dto.WeatherInfo
 import com.bowoon.android.jetpack.databinding.VhWeatherConditionBinding
 import com.bowoon.android.jetpack.ui.vh.WeatherConditionVH
-import com.bowoon.android.jetpack.util.Log
 
 class WeatherConditionAdapter(
     private val items: List<WeatherInfo.Weather?>? = null

@@ -1,9 +1,9 @@
 package com.bowoon.android.jetpack.ui.vm
 
 import androidx.lifecycle.viewModelScope
+import com.bowoon.android.data.util.Status
 import com.bowoon.android.domain.usecase.WeatherCastUseCase
 import com.bowoon.android.jetpack.base.BaseVM
-import com.bowoon.android.jetpack.util.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch

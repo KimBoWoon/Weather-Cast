@@ -11,13 +11,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bowoon.android.compose.ui.util.dpToSp
 import com.bowoon.android.compose.ui.vm.MainVM
 import com.bowoon.android.compose.ui.weather.WeatherItem
-import com.bowoon.android.compose.util.Log
-import com.bowoon.android.compose.util.Status
+import com.bowoon.android.data.util.Log
+import com.bowoon.android.data.util.Status
 import com.bowoon.android.domain.dto.WeatherInfo
 import kotlinx.coroutines.launch
 
@@ -36,8 +37,8 @@ fun WeatherCastCompose(viewModel: MainVM = viewModel()) {
                         CircularProgressIndicator()
                     }
                 }
-                is Status.Success -> {
-                    WeatherCastContent(weatherInfo = (status as Status.Success).data)
+                is Status.Success<*> -> {
+                    WeatherCastContent(weatherInfo = (status as Status.Success<List<WeatherInfo>>).data)
                 }
                 is Status.Failure -> {
                     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
@@ -113,4 +114,13 @@ fun WeatherCastContent(weatherInfo: List<WeatherInfo?>?) {
             }
         }
     }
+}
+
+@Preview(
+    name = "main screen preview",
+    showBackground = true
+)
+@Composable
+fun Preview() {
+    WeatherCastCompose()
 }

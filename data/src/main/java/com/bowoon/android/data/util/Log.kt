@@ -1,7 +1,7 @@
-package com.bowoon.android.compose.util
+package com.bowoon.android.data.util
 
 import android.util.Log
-import com.bowoon.android.compose.BuildConfig
+import com.bowoon.android.data.BuildConfig
 
 object Log {
     fun i(msg: String) {
