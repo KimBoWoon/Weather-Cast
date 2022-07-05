@@ -13,8 +13,8 @@ android {
         applicationId = Config.Application.applicationId
         minSdk = Config.Application.minSdk
         targetSdk = Config.Application.targetSdk
-        versionCode = Config.Application.versionCode
-        versionName = Config.Application.versionName
+        versionCode = Config.Application.composeVersionCode
+        versionName = Config.Application.composeVersionName
 
         testInstrumentationRunner = Config.Application.testInstrumentationRunner
     }
@@ -42,6 +42,7 @@ android {
 
 dependencies {
     implementation("com.github.skydoves:landscapist-glide:1.5.2")
+    implementation("androidx.paging:paging-compose:1.0.0-alpha15")
 
     arrayOf(
         Dependencies.Layout.constraint,

@@ -14,7 +14,7 @@ object Versions {
     }
 
     object Gradle {
-        const val gradle = "7.1.3"
+        const val gradle = "7.2.1"
         const val plugin = "1.6.0"
     }
 

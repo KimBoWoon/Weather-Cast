@@ -2,9 +2,11 @@ package com.bowoon.android.domain.dto
 
 
 import android.os.Parcelable
+import androidx.annotation.Keep
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
 
+@Keep
 @Parcelize
 @kotlinx.serialization.Serializable
 data class WeatherInfo(
@@ -35,6 +37,7 @@ data class WeatherInfo(
     @SerialName("wind")
     val wind: Wind? = null
 ) : Parcelable {
+    @Keep
     @Parcelize
     @kotlinx.serialization.Serializable
     data class Clouds(
@@ -42,6 +45,7 @@ data class WeatherInfo(
         val all: Int? = null // 0
     ) : Parcelable
 
+    @Keep
     @Parcelize
     @kotlinx.serialization.Serializable
     data class Coord(
@@ -51,6 +55,7 @@ data class WeatherInfo(
         val lon: Double? = null // 126.9835
     ) : Parcelable
 
+    @Keep
     @Parcelize
     @kotlinx.serialization.Serializable
     data class Main(
@@ -72,6 +77,7 @@ data class WeatherInfo(
         fun getMinTemperature(): String = String.format("최저 온도 : %.2f°C", tempMin)
     }
 
+    @Keep
     @Parcelize
     @kotlinx.serialization.Serializable
     data class Sys(
@@ -87,6 +93,7 @@ data class WeatherInfo(
         val type: Int? = null // 1
     ) : Parcelable
 
+    @Keep
     @Parcelize
     @kotlinx.serialization.Serializable
     data class Weather(
@@ -103,6 +110,7 @@ data class WeatherInfo(
         fun getIconUrl(): String = "https://openweathermap.org/img/wn/$icon.png"
     }
 
+    @Keep
     @Parcelize
     @kotlinx.serialization.Serializable
     data class Wind(
